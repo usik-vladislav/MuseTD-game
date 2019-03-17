@@ -5,13 +5,13 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField]
-    private readonly float speed = 6.0f;
+    private float speed = 6.0f;
 
     public Vector3 Direction { get; set; }
 
     private void Start()
     {
-        Destroy(gameObject, 1.5f);
+        //Destroy(gameObject, 1.5f);
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
