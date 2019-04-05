@@ -17,7 +17,7 @@ public class MobSpawner : MonoBehaviour
 
     void Update()
     {
-        if (isStarted & SongManager.IsBeatFull)
+        if (isStarted & BeatManager.IsBeatFull)
         {
             Instantiate(ball, transform.position, transform.rotation);
         }

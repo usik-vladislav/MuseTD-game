@@ -11,14 +11,15 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
-        //Destroy(gameObject, 1.5f);
+        Destroy(gameObject, 1.5f);
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        Ball mob = collider.GetComponent<Ball>();
+        Mob mob = collider.GetComponent<Mob>();
         if (mob)
         {
+            mob.TakeDamage(1);
             Destroy(gameObject);
         }
     }

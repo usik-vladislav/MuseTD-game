@@ -11,7 +11,7 @@ public class Mob : MonoBehaviour
     protected int cost = 10;
 
     [SerializeField]
-    protected float lives = 3.0f;
+    protected float lives = 1.0f;
 
     protected Vector3 direction;
 
@@ -40,6 +40,15 @@ public class Mob : MonoBehaviour
     protected virtual void Move()
     {
 
+    }
+
+    public virtual void TakeDamage(float damage)
+    {
+        lives -= damage;
+        if (lives <= 0)
+        {
+            Die();
+        }
     }
 
 }

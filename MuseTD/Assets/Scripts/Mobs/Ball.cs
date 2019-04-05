@@ -21,6 +21,11 @@ public class Ball : Mob
         direction = route[indexOfDirection];
     }
 
+    private void Start()
+    {
+        lives = 3;
+    }
+
     protected override void Move()
     {
         if (passedWayInSegment < route[indexOfDirection].magnitude)

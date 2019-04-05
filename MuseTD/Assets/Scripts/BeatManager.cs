@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SongManager : MonoBehaviour
+public class BeatManager : MonoBehaviour
 {
     //текущая позиция в песне (в секундах)
     private float songPosition;
@@ -21,10 +21,17 @@ public class SongManager : MonoBehaviour
 
     [SerializeField]
     private float offset = 0;
+    
+    [SerializeField]
+    private float beatOffset = 0;
 
     private float beatTimer = 0;
 
+    private float beatPlayTimer = 0;
+
     public static bool IsBeatFull = false;
+
+    public static bool IsBeatPlay = false;
 
     private void Start()
     {
@@ -37,14 +44,18 @@ public class SongManager : MonoBehaviour
 
         //начало песни
         GetComponent<AudioSource>().Play();
+
     }
 
     private void Update()
     {
         IsBeatFull = false;
+        IsBeatPlay = false;
+
         //вычисление позиции в секундах
         var newSongPosition = (float)(AudioSettings.dspTime - dsptimesong);
         beatTimer += newSongPosition - songPosition;
+        beatPlayTimer += newSongPosition - songPosition;
         songPosition = newSongPosition;
 
         //вычисление позиции в ударах
@@ -54,6 +65,12 @@ public class SongManager : MonoBehaviour
         {
             beatTimer -= secPerBeat;
             IsBeatFull = true;
+        }
+
+        if (beatPlayTimer > secPerBeat - beatOffset)
+        {
+            beatPlayTimer -= secPerBeat;
+            IsBeatPlay = true;
         }
     }
 }

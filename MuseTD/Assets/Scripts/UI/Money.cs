@@ -12,6 +12,8 @@ public class Money : MonoBehaviour
 
     public static int Count { get; set; }
 
+    public static readonly int GunTowerCost = 70;
+
     private void Awake()
     {
         text = GetComponentInChildren<Text>();
@@ -21,10 +23,6 @@ public class Money : MonoBehaviour
 
     private void Update()
     {
-        if (SongManager.IsBeatFull)
-        {
-            Count++;
-        }
         text.text = Count.ToString();
     }
 }
