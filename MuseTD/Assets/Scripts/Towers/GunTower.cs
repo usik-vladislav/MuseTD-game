@@ -6,9 +6,10 @@ public class GunTower : Tower
 {
     private Bullet bullet;
 
-    private void Awake()
+    private void Awake() 
     {
         bullet = Resources.Load<Bullet>("Bullet");
+        rigitBody = GetComponent<Rigidbody2D>();
         direction = Vector3.left;
         cost = Money.GunTowerCost;
     }
@@ -18,7 +19,7 @@ public class GunTower : Tower
         if (Target)
         {
             var newDirection = Target.transform.position - transform.position;
-            transform.rotation *= Quaternion.FromToRotation(direction, newDirection);
+            rigitBody.MoveRotation(Vector3.SignedAngle(Vector3.left, newDirection, Vector3.forward));
             direction = newDirection;
         }
     }
@@ -27,7 +28,7 @@ public class GunTower : Tower
     {
         if (BeatManager.IsBeatFull && Target)
         {
-            var newBullet = Instantiate(bullet, transform.position + direction.normalized * 1f, transform.rotation);
+            var newBullet = Instantiate(bullet, transform.position + direction.normalized * 0.8f, transform.rotation);
             newBullet.Direction = direction;
         }
     }

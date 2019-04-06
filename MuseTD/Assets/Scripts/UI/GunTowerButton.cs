@@ -22,7 +22,7 @@ public class GunTowerButton : MonoBehaviour
 
     private void OnMouseUp()
     {
-        if (Money.Count >= Money.GunTowerCost)
+        if (Money.EnoughMoney(Money.GunTowerCost))
         {
             var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0;

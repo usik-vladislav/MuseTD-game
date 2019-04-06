@@ -13,6 +13,9 @@ public class Mob : MonoBehaviour
     [SerializeField]
     protected float lives = 1.0f;
 
+    [SerializeField]
+    protected int damage = 10;
+
     protected Vector3 direction;
 
     protected bool isStop = false;
@@ -27,13 +30,19 @@ public class Mob : MonoBehaviour
         }
         else
         {
-            Die();
+            AttackBase();
         }
+    }
+
+    private void AttackBase()
+    {
+        Lives.TakeDamage(damage);
+        Destroy(gameObject);
     }
 
     protected void Die()
     {
-        Money.Count += cost;
+        Money.GetMoney(cost);
         Destroy(gameObject);
     }
 

@@ -14,6 +14,8 @@ public class Tower : MonoBehaviour
 
     protected Vector3 direction;
 
+    protected Rigidbody2D rigitBody;
+
     private int objCountInPlace = 0;
 
     public Mob Target { get; private set; }
@@ -46,7 +48,7 @@ public class Tower : MonoBehaviour
             
             if (Input.GetMouseButtonDown(0) && CheckObstacle())
             {
-                Money.Count -= cost;
+                Money.BuyTower(cost);
                 IsBuilding = true;
                 TowerManager.AddTower(this);
             }
@@ -106,13 +108,6 @@ public class Tower : MonoBehaviour
         mousePos.z = 0;
         transform.position = mousePos;
     }
-
-    //private bool CheckPos()
-    //{
-    //    var colliders = Physics2D.OverlapCircleAll(transform.position, 1);
-    //    colliders.Where(x => x.name == "Tower");
-    //    return (colliders.Length < 2) ? true : false;
-    //}
 
     private bool CheckObstacle()
     {

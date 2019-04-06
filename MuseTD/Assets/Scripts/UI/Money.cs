@@ -10,7 +10,7 @@ public class Money : MonoBehaviour
 
     private Text text;
 
-    public static int Count { get; set; }
+    private static int count;
 
     public static readonly int GunTowerCost = 70;
 
@@ -18,11 +18,26 @@ public class Money : MonoBehaviour
     {
         text = GetComponentInChildren<Text>();
         text.text = startCount.ToString();
-        Count = startCount;
+        count = startCount;
     }
 
     private void Update()
     {
-        text.text = Count.ToString();
+        text.text = count.ToString();
+    }
+
+    public static void BuyTower(int cost)
+    {
+        count -= cost;
+    }
+
+    public static void GetMoney(int _count)
+    {
+        count += _count;
+    }
+
+    public static bool EnoughMoney(int cost)
+    {
+        return count >= cost ? true : false;
     }
 }
