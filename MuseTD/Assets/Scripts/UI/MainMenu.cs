@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public GameObject Setting;
+
+
     public void Play()
     {
         SceneManager.LoadScene(1);
@@ -12,7 +15,7 @@ public class MainMenu : MonoBehaviour
 
     public void OpenOptions()
     {
-
+        Setting.SetActive(!Setting.activeSelf);
     }
 
     public void Exit()

@@ -13,11 +13,11 @@ public class GunTowerButton : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        transform.localScale = new Vector3(1.05f, 1.05f, 1.05f);
+        transform.localScale = new Vector3(1f, 1f, 1f);
     }
     private void OnMouseExit()
     {
-        transform.localScale = new Vector3(1f, 1f, 1f);
+        transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
     }
 
     private void OnMouseUp()

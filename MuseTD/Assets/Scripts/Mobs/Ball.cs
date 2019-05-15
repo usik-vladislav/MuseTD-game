@@ -6,7 +6,7 @@ using UnityEngine;
 public class Ball : Mob
 {
    //-- Временная реализация маршрута
-    private Vector3[] route = new Vector3[] { 5 * Vector3.right, 5 * Vector3.up,  9 * Vector3.right,
+    private Vector3[] route = new Vector3[] { 4 * Vector3.right, 5 * Vector3.up,  9 * Vector3.right,
                                               3 * Vector3.down, 6 * Vector3.left, 2 * Vector3.down,
                                               8 * Vector3.right, 2 * Vector3.down };
     
