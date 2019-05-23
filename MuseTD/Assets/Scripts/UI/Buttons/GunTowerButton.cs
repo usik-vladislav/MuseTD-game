@@ -2,22 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunTowerButton : MonoBehaviour
+public class GunTowerButton : Button
 {
     private GunTower tower;
 
-    private void Awake()
+    private new void Awake()
     {
+        base.Awake();
         tower = Resources.Load<GunTower>("GunTower");
-    }
-
-    private void OnMouseEnter()
-    {
-        transform.localScale = new Vector3(1f, 1f, 1f);
-    }
-    private void OnMouseExit()
-    {
-        transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
     }
 
     private void OnMouseUp()

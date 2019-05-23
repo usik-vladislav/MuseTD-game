@@ -11,10 +11,12 @@ public class SoundManager : MonoBehaviour
     private void Awake()
     {
         beatSound = GetComponent<AudioSource>();
+        beatSound.volume = Global.Sound;
     }
 
     private void Update()
     {
+        beatSound.volume = Global.Sound;
         if (IsBeat && BeatManager.IsBeatPlay)
         {
             beatSound.Play();

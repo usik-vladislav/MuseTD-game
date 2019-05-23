@@ -33,17 +33,24 @@ public class BeatManager : MonoBehaviour
 
     public static bool IsBeatPlay = false;
 
-    private void Start()
+    private AudioSource audioSource;
+
+    public void Awake()
     {
         //вычисление количества секунд в одном ударе
         //объявление bpm выполняется ниже
         secPerBeat = 60f / bpm;
+        audioSource = GetComponent<AudioSource>();
+        audioSource.volume = Global.Musik;
+    }
 
+    private void Start()
+    {
         //запись времени начала песни
         dsptimesong = (float)AudioSettings.dspTime + offset;
 
         //начало песни
-        GetComponent<AudioSource>().Play();
+        audioSource.Play();
 
     }
 
@@ -51,6 +58,8 @@ public class BeatManager : MonoBehaviour
     {
         IsBeatFull = false;
         IsBeatPlay = false;
+
+        audioSource.volume = Global.Musik;
 
         //вычисление позиции в секундах
         var newSongPosition = (float)(AudioSettings.dspTime - dsptimesong);
