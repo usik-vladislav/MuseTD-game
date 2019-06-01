@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class TowerManager : MonoBehaviour
 {
-    private static List<Tower> towers = new List<Tower>();
+    private static List<Tower> towers;
+
+    private void Awake()
+    {
+        towers = new List<Tower>();
+    }
 
     public static void AddTower(Tower tower)
     {
@@ -18,21 +23,31 @@ public class TowerManager : MonoBehaviour
 
     public void Update()
     {
-        var isBeat = false;
+        var isGun = false;
+        var isCannon = false;
+        var isLava = false;
+
         for (int i = 0; i < towers.Count; i++)
         {
-            if (towers[i].Target)
+            if (towers[i] is LavaTower)
+            {
+                isLava = true;
+            }
+            if (towers[i].IsTarget)
             {
                 if (towers[i] is GunTower)
                 {
-                    SoundManager.IsBeat = true;
-                    isBeat = true;
+                    isGun = true;
+                }
+                if (towers[i] is CannonTower)
+                {
+                    isCannon = true;
                 }
             }
         }
-        if (!isBeat)
-        {
-            SoundManager.IsBeat = false;
-        }
+
+        SoundManager.IsGun = isGun;
+        SoundManager.IsCannon = isCannon;
+        SoundManager.IsLava = isLava;
     }
 }

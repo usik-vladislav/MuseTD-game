@@ -21,7 +21,6 @@ public class ResolutionSettings : MonoBehaviour
         toggle.isOn = Screen.fullScreen;
 
         var res = resolutions.Select(x => x.width.ToString() + "x" + x.height.ToString());
-        Debug.Log(res.Count());
         dropdown.AddOptions(res.ToList());
         dropdown.value = res.Count() - 1;
     }

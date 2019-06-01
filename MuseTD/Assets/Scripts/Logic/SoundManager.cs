@@ -4,22 +4,75 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    private AudioSource beatSound;
+    [SerializeField]
+    private AudioSource gunSound;
 
-    public static bool IsBeat = false; 
+    [SerializeField]
+    private AudioSource cannonShootSound;
 
-    private void Awake()
-    {
-        beatSound = GetComponent<AudioSource>();
-        beatSound.volume = Global.Sound;
-    }
+    [SerializeField]
+    private AudioSource cannonBangSound;
+
+    [SerializeField]
+    private AudioSource lavaSound;
+
+    public static bool IsGun = false;
+
+    public static bool IsCannon = false;
+
+    public static bool IsLava = false;
+
+    private bool isBall = false;
+
+    [SerializeField]
+    private float gunVolume;
+
+    [SerializeField]
+    private float cannonShootVolume;
+
+    [SerializeField]
+    private float cannonBangVolume;
+
+    [SerializeField]
+    private float lavaVolume;
 
     private void Update()
     {
-        beatSound.volume = Global.Sound;
-        if (IsBeat && BeatManager.IsBeatPlay)
+        gunSound.volume = gunVolume * Global.Sound;
+        cannonShootSound.volume = cannonShootVolume * Global.Sound;
+        cannonBangSound.volume = cannonBangVolume * Global.Sound;
+        lavaSound.volume = lavaVolume * Global.Sound;
+
+        if (BeatManager.IsBeatFull && !LevelEndControl.IsEnded)
         {
-            beatSound.Play();
+            if (IsGun)
+            {
+                gunSound.Play();
+            }
+            if (IsCannon)
+            {
+                if (BeatManager.CountBeat % 2 == 0)
+                {
+                    cannonShootSound.Play();
+                    isBall = true;
+                }
+                else if (isBall)
+                {
+                    cannonBangSound.Play();
+                    isBall = false;
+                }
+            }
+            if (IsLava)
+            {
+                if (BeatManager.CountBeat % 4 == 0)
+                {
+                    lavaSound.Play();
+                }
+                if (BeatManager.CountBeat % 4 == 3)
+                {
+                    lavaSound.Stop();
+                }
+            }
         }
     }
 }

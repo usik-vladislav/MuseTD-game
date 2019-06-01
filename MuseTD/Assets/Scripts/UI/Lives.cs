@@ -10,7 +10,20 @@ public class Lives : MonoBehaviour
 
     private Text text;
 
-    public static int CountOfLives { get; set; }
+    private static int countOfLives;
+
+    public static int CountOfLives
+    {
+        get
+        {
+            return countOfLives;
+        }
+
+        set
+        {
+            countOfLives = value < 0 ? 0 : value;
+        }
+    }
 
     private void Awake()
     {
@@ -26,9 +39,5 @@ public class Lives : MonoBehaviour
     public static void TakeDamage(int damage)
     {
         CountOfLives -= damage;
-        if (CountOfLives <= 0)
-        {
-
-        }
     }
 }

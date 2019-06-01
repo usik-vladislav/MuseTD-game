@@ -9,6 +9,10 @@ public class SettingButton : Button
 
     private void OnMouseUp()
     {
+        if (LevelEndControl.IsEnded)
+        {
+            return;
+        }
         setting.SetActive(!setting.activeSelf);
     }
 }

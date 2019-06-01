@@ -2,9 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Tower : MonoBehaviour
 {
+
+    private int objCountInPlace = 0;
+
+    [SerializeField]
+    protected TowerSetting setting;
+
+    [SerializeField]
+    protected int LvlUpCost = 100;
+
+    [SerializeField]
+    protected int SellCost = 100;
+
     [SerializeField]
     protected float range = 4.0f;
 
@@ -12,31 +25,27 @@ public class Tower : MonoBehaviour
 
     protected List<Mob> enemys;
 
-    protected Vector3 direction;
-
-    protected Rigidbody2D rigitBody;
-
-    private int objCountInPlace = 0;
-
-    public Mob Target { get; private set; }
+    public bool IsTarget { get; set; }
 
     public bool IsBuilding { get; set; }
     
-    private void Awake()
+    protected virtual void Awake()
     {
+        setting = Resources.Load<TowerSetting>("TowerSetting");
+        setting.LvlUpButton.GetComponentInChildren<Text>().text = LvlUpCost.ToString();
+        setting.SellButton.GetComponentInChildren<Text>().text = SellCost.ToString();
+
+        IsTarget = false;
         IsBuilding = false;
         enemys = new List<Mob>();
-        Target = null;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (IsBuilding)
         {
             CheckEnemy();
-            SetTarget();
-            Rotate();
-            Shoot();
+            Attack();
         }
         else
         {
@@ -69,35 +78,12 @@ public class Tower : MonoBehaviour
             }
         }
 
+        IsTarget = (newEnemys.Count > 1) ? true : false;
+
         enemys = newEnemys;
     }
 
-    private void SetTarget()
-    {
-        if (enemys.Count > 0)
-        {
-            var maxPassedWay = enemys.Max(x => x.passedWay);
-            for (int i = 0; i < enemys.Count; i++)
-            {
-                if (enemys[i].passedWay == maxPassedWay)
-                {
-                    Target = enemys[i];
-                    return;
-                }
-            }
-        }
-        else
-        {
-            Target = null;
-        }
-    }
-
-    protected virtual void Shoot()
-    {
-
-    }
-
-    protected virtual void Rotate()
+    protected virtual void Attack()
     {
 
     }
@@ -132,4 +118,11 @@ public class Tower : MonoBehaviour
         }
     }
 
+    protected void OnMouseDown()
+    {
+        if (IsBuilding)
+        {
+            Instantiate(setting, transform.position - new Vector3 (0, 0.75f, 0) , Quaternion.identity);
+        }
+    }
 }

@@ -4,83 +4,101 @@ using UnityEngine;
 
 public class BeatManager : MonoBehaviour
 {
-    //текущая позиция в песне (в секундах)
+    private AudioSource audioSource;
+
     private float songPosition;
 
-    //текущая позиция в песне (в ударах)
-    private float songPosInBeats;
+    private float secPerBeatD4;
 
-    //длительность удара
-    private float secPerBeat;
+    private float beatTimer = 0;
 
-    //сколько времени (в секундах) прошло после начала песни
-    private float dsptimesong;
+    private float beatTimerD4 = 0;
+
+    private float dsptimesong;         //сколько времени (в секундах) прошло после начала песни
 
     [SerializeField]
     private float bpm = 180;
 
-    [SerializeField]
-    private float offset = 0;
-    
-    [SerializeField]
-    private float beatOffset = 0;
+    public static float SecPerBeat { get; set; }
 
-    private float beatTimer = 0;
+    public static float SongPosInBeats { get; set; }
 
-    private float beatPlayTimer = 0;
+    public static bool IsBeatFull { get; set; }
 
-    public static bool IsBeatFull = false;
+    public static bool IsBeatD4 { get; set; }
 
-    public static bool IsBeatPlay = false;
+    public static int CountBeatD4 { get; set; }
 
-    private AudioSource audioSource;
+    public static int CountBeat { get; set; }
+
+    //[SerializeField]
+    //private float offset = 0;
+
+    //[SerializeField]
+    //private float beatOffset = 0;
+
+    //private float beatPlayTimer = 0;
+
+    //public static bool IsBeatPlay = false;
 
     public void Awake()
     {
-        //вычисление количества секунд в одном ударе
-        //объявление bpm выполняется ниже
-        secPerBeat = 60f / bpm;
+        IsBeatFull = false;
+        IsBeatD4 = false;
+        SecPerBeat = 60f / bpm;
+        secPerBeatD4 = SecPerBeat / 4;
         audioSource = GetComponent<AudioSource>();
         audioSource.volume = Global.Musik;
     }
 
     private void Start()
     {
-        //запись времени начала песни
-        dsptimesong = (float)AudioSettings.dspTime + offset;
+        dsptimesong = (float)AudioSettings.dspTime; //+ offset; //запись времени начала песни
 
-        //начало песни
         audioSource.Play();
 
     }
 
     private void Update()
     {
+        //IsBeatPlay = false;
+        //beatPlayTimer += newSongPosition - songPosition;
+        //if (beatPlayTimer > secPerBeat - beatOffset)
+        //{
+        //    beatPlayTimer -= secPerBeat;
+        //    IsBeatPlay = true;
+        //}
+
         IsBeatFull = false;
-        IsBeatPlay = false;
+        IsBeatD4 = false;
 
         audioSource.volume = Global.Musik;
 
-        //вычисление позиции в секундах
-        var newSongPosition = (float)(AudioSettings.dspTime - dsptimesong);
+        if (!audioSource.isPlaying)
+        {
+            LevelEndControl.IsEnded = true;
+        }
+
+        var newSongPosition = (float)(AudioSettings.dspTime - dsptimesong);   //вычисление позиции в секундах
         beatTimer += newSongPosition - songPosition;
-        beatPlayTimer += newSongPosition - songPosition;
-        songPosition = newSongPosition;
+        beatTimerD4 += newSongPosition - songPosition;
 
-        //вычисление позиции в ударах
-        songPosInBeats = songPosition / secPerBeat;
-
-        if (beatTimer > secPerBeat)
+        if (beatTimer >= SecPerBeat)
         {
-            beatTimer -= secPerBeat;
+            beatTimer -= SecPerBeat;
             IsBeatFull = true;
+            CountBeat++;
         }
 
-        if (beatPlayTimer > secPerBeat - beatOffset)
+        if (beatTimerD4 >= secPerBeatD4)
         {
-            beatPlayTimer -= secPerBeat;
-            IsBeatPlay = true;
+            beatTimerD4 -= secPerBeatD4;
+            IsBeatD4 = true;
+            CountBeatD4++;
         }
+
+        songPosition = newSongPosition;
+        SongPosInBeats = songPosition / SecPerBeat;
     }
 }
 

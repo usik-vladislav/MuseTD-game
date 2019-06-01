@@ -14,6 +14,10 @@ public class Money : MonoBehaviour
 
     public static readonly int GunTowerCost = 70;
 
+    public static readonly int CannonTowerCost = 110;
+
+    public static readonly int LavaTowerCost = 200;
+
     private void Awake()
     {
         text = GetComponentInChildren<Text>();
