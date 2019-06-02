@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 309412972902708865}
   - component: {fileID: 9199693889007252189}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: New Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 20
+  m_SortingOrder: 21
   m_Sprite: {fileID: 21300000, guid: 093f10e32ac3c4b43b387d6526786ae6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -368,7 +368,7 @@ GameObject:
   - component: {fileID: 707631920687556661}
   - component: {fileID: 7970104736870741723}
   - component: {fileID: 5045930994090191348}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: LvlUpButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -383,8 +383,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7583134435616419530}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.3, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalPosition: {x: -0.5, y: 0, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children:
   - {fileID: 309412972902708865}
   - {fileID: 6901435910148902746}
@@ -427,7 +427,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 20
   m_Sprite: {fileID: 21300000, guid: 00d33e21ceb828a489cb6be1f6d8ba0b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -464,7 +464,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00000023841858, y: 0}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -475,7 +475,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.49999, y: 1}
+  m_Size: {x: 2.5, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &7763653652886353449
 GameObject:
@@ -487,7 +487,7 @@ GameObject:
   m_Component:
   - component: {fileID: 756492233220210421}
   - component: {fileID: 1082479388286011315}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: New Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -544,7 +544,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 21
   m_Sprite: {fileID: 21300000, guid: 41e8b1b8f24feec4195591542dba76b3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -566,7 +566,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4346778738641674041}
   - component: {fileID: 5067242127063038959}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TowerSetting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -601,8 +601,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 088ed908cc2bad14aa979356214fa9b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LvlUpButton: {fileID: 7583134435616419530}
-  SellButton: {fileID: 8156493605460861117}
+  LvlUpButton: {fileID: 7970104736870741723}
+  SellButton: {fileID: 1741752319797137483}
 --- !u!1 &8156493605460861117
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,7 +615,7 @@ GameObject:
   - component: {fileID: 3044273950590945909}
   - component: {fileID: 1741752319797137483}
   - component: {fileID: 7290930444261280046}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SellButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -630,8 +630,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8156493605460861117}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.3, y: 0, z: 0.0019173053}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalPosition: {x: 0.5, y: 0, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children:
   - {fileID: 756492233220210421}
   - {fileID: 146915736386365752}
@@ -674,7 +674,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 20
   m_Sprite: {fileID: 21300000, guid: 00d33e21ceb828a489cb6be1f6d8ba0b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -711,7 +711,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00000023841858, y: 0}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -722,7 +722,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.49999, y: 1}
+  m_Size: {x: 2.5, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &8985804618382076623
 GameObject:

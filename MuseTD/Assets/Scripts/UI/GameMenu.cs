@@ -8,6 +8,8 @@ public class GameMenu : MonoBehaviour
 
     public void ClickRestart()
     {
+        BeatManager.IsBeatFull = false;
+        BeatManager.IsBeatD4 = false;
         SceneManager.LoadScene(1);
     }
 

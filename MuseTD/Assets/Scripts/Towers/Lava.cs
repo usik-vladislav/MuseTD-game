@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Lava : MonoBehaviour
 {
-    [SerializeField]
-    private int damage = 1;
+    public int Damage = 0;
+
+    public float range;
+
+    public bool IsLvlUp = false;
 
     private void Update()
     {
@@ -13,12 +16,12 @@ public class Lava : MonoBehaviour
         if (BeatManager.CountBeat % 4 == 0)
         {
             var pos = BeatManager.SongPosInBeats;
-            transform.localScale = new Vector3(1, 1, 1) * Mathf.Lerp(1f, 3f, (pos - (float)System.Math.Truncate(pos)) / BeatManager.SecPerBeat);
+            transform.localScale = new Vector3(1, 1, 1) * Mathf.Lerp(1f, range, (pos - (float)System.Math.Truncate(pos)) / BeatManager.SecPerBeat);
         }
         else if (BeatManager.CountBeat % 4 == 2)
         {
             var pos = BeatManager.SongPosInBeats;
-            transform.localScale = new Vector3(1, 1, 1) * Mathf.Lerp(3f, 1f, (pos - (float)System.Math.Truncate(pos)) / BeatManager.SecPerBeat);
+            transform.localScale = new Vector3(1, 1, 1) * Mathf.Lerp(range, 1f, (pos - (float)System.Math.Truncate(pos)) / BeatManager.SecPerBeat);
         }
         else if (BeatManager.CountBeat % 4 == 3)
         {
@@ -31,7 +34,11 @@ public class Lava : MonoBehaviour
         Mob mob = collider.GetComponent<Mob>();
         if (mob && BeatManager.IsBeatD4 && BeatManager.CountBeatD4 % 2 == 0)
         {
-            mob.TakeDamage(damage);
+            if (IsLvlUp && !mob.isSlowDown)
+            {
+                mob.SlowDown();
+            }
+            mob.TakeDamage(Damage);
         }
     }
 

@@ -11,11 +11,20 @@ public class AimTower : Tower
 
     protected Mob target;
 
+    protected List<Mob> enemys;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        enemys = new List<Mob>();
+    }
+
     protected override void Update()
     {
         base.Update();
         if (IsBuilding)
         {
+            CheckEnemy();
             SetTarget();
             Rotate();
         }
@@ -38,7 +47,27 @@ public class AimTower : Tower
         else
         {
             target = null;
+            IsTarget = false;
         }
+    }
+
+    private void CheckEnemy()
+    {
+        var colliders = Physics2D.OverlapCircleAll(transform.position, range / 2);
+        var newEnemys = new List<Mob>();
+        for (int i = 0; i < colliders.Length; i++)
+        {
+
+            Mob mob = colliders[i].GetComponent<Mob>();
+            if (mob)
+            {
+                newEnemys.Add(mob);
+            }
+        }
+
+        IsTarget = (newEnemys.Count > 0) ? true : false;
+
+        enemys = newEnemys;
     }
 
     protected virtual void Rotate()

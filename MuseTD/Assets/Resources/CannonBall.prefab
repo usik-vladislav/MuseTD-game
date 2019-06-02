@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3733019776403684077}
   - component: {fileID: 2189858084229246719}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Bullet Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 3930437344781216829}
   - component: {fileID: 75974452342981745}
   - component: {fileID: 8339918506448965652}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: CannonBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f02ab6e3c2844ae4186572a6d9411d7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  IsLvlUp: 0
+  IsFastBang: 0
+  Damage: 0
 --- !u!50 &8339918506448965652
 Rigidbody2D:
   serializedVersion: 4

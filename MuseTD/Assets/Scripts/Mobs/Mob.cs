@@ -18,15 +18,26 @@ public class Mob : MonoBehaviour
 
     protected Vector3 direction;
 
+    [SerializeField]
+    protected float path = 39f;
+
     protected bool isStop = false;
+
+    public bool isSlowDown = false;
 
     public float passedWay = 0;
 
     private void Update()
     {
+
         if (!isStop)
         {
             Move();
+            if (isSlowDown && BeatManager.IsBeatFull && BeatManager.CountBeat % 4 == 3)
+            {
+                speed *= 2;
+                isSlowDown = false;
+            }
         }
         else
         {
@@ -58,6 +69,12 @@ public class Mob : MonoBehaviour
         {
             Die();
         }
+    }
+
+    public virtual void SlowDown()
+    {
+        speed /= 2;
+        isSlowDown = true;
     }
 
 }

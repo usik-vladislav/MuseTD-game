@@ -7,8 +7,7 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private float speed = 6.0f;
 
-    [SerializeField]
-    private int damage = 1;
+    public int Damage;
 
     public Vector3 Direction { get; set; }
 
@@ -22,7 +21,7 @@ public class Bullet : MonoBehaviour
         Mob mob = collider.GetComponent<Mob>();
         if (mob)
         {
-            mob.TakeDamage(damage);
+            mob.TakeDamage(Damage);
             Destroy(gameObject);
         }
     }

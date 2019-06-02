@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6113400789851470120}
   - component: {fileID: 6379277326687294065}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Bullet Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 8137413571787870185}
   - component: {fileID: 2496486925197297252}
   - component: {fileID: 3822663713785045419}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
+  Damage: 0
 --- !u!61 &3822663713785045419
 BoxCollider2D:
   m_ObjectHideFlags: 0

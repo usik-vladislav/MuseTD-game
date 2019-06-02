@@ -26,6 +26,8 @@ public class TowerManager : MonoBehaviour
         var isGun = false;
         var isCannon = false;
         var isLava = false;
+        var isMiniGun = false;
+        var isUpCannon = false;
 
         for (int i = 0; i < towers.Count; i++)
         {
@@ -38,10 +40,18 @@ public class TowerManager : MonoBehaviour
                 if (towers[i] is GunTower)
                 {
                     isGun = true;
+                    if (towers[i].IsLvlUp)
+                    {
+                        isMiniGun = true;
+                    }
                 }
                 if (towers[i] is CannonTower)
                 {
                     isCannon = true;
+                    if (towers[i].IsLvlUp)
+                    {
+                        isUpCannon = true;
+                    }
                 }
             }
         }
@@ -49,5 +59,7 @@ public class TowerManager : MonoBehaviour
         SoundManager.IsGun = isGun;
         SoundManager.IsCannon = isCannon;
         SoundManager.IsLava = isLava;
+        SoundManager.IsMiniGun = isMiniGun;
+        SoundManager.IsUpCannon = isUpCannon;
     }
 }

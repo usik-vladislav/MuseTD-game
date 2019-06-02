@@ -7,6 +7,12 @@ public class CannonTower : AimTower
     private CannonBall ball;
 
     [SerializeField]
+    private Sprite spriteUpTower;
+
+    [SerializeField]
+    private Sprite spriteUpBall;
+
+    [SerializeField]
     private float rotateSpeed = 1;
 
     private bool isRotate;
@@ -18,6 +24,7 @@ public class CannonTower : AimTower
         ball = Resources.Load<CannonBall>("CannonBall");
         cost = Money.CannonTowerCost;
         rigitBody = GetComponent<Rigidbody2D>();
+        rigitBody.angularVelocity = rotateSpeed;
         direction = Vector3.left;
     }
 
@@ -47,6 +54,21 @@ public class CannonTower : AimTower
             var newCannonBall = Instantiate(ball, transform.position + direction.normalized * 0.5f, transform.rotation);
             newCannonBall.Direction = direction;
             newCannonBall.Point = target.transform.position - transform.position;
+            newCannonBall.Damage = damage;
+            if (IsLvlUp)
+            {
+                newCannonBall.GetComponentInChildren<SpriteRenderer>().sprite = spriteUpBall;
+                newCannonBall.IsLvlUp = true;
+            }
         }
+    }
+
+    public override void LvlUp()
+    {
+        base.LvlUp();
+        spriteComp.sprite = spriteUpTower;
+        range *= 1.5f;
+        damage *= 2;
+        SellCost = 300;
     }
 }

@@ -5,17 +5,17 @@ using UnityEngine;
 public class TowerSetting : MonoBehaviour
 {
     [SerializeField]
-    public GameObject LvlUpButton;
+    public LvlUpButton LvlUpButton;
 
     [SerializeField]
-    public GameObject SellButton;
+    public SellButton SellButton;
 
     private bool mayClick;
 
     private void Start()
     {
         mayClick = false;
-        Invoke("Set", 1f);
+        Invoke("Set", 0.3f);
     }
 
     private void Set()
@@ -27,7 +27,7 @@ public class TowerSetting : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && mayClick)
         {
-            Destroy(gameObject, 0.3f);
+            Destroy(gameObject, 0.2f);
         }
     }
 }

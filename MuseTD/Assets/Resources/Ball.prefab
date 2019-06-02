@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6638670220985892807}
   - component: {fileID: 6638670220985892806}
   - component: {fileID: 6638670220985892805}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,6 +49,8 @@ MonoBehaviour:
   speed: 2
   cost: 10
   lives: 1
+  damage: 10
+  isSlowDown: 0
   passedWay: 0
 --- !u!58 &6638670220985892806
 CircleCollider2D:
@@ -97,7 +99,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6638670221819824350}
   - component: {fileID: 6638670221819824351}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Ball sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

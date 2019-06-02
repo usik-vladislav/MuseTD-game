@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CannonBall : MonoBehaviour
 {
+    private CannonBall ball;
+
     private float speed = 6.0f;
 
     private float acceleration = 1;
@@ -12,8 +14,11 @@ public class CannonBall : MonoBehaviour
 
     private GameObject bang;
 
-    [SerializeField]
-    private int damage = 1;
+    public bool IsLvlUp = false;
+
+    public bool IsFastBang = false;
+
+    public int Damage = 0;
 
     private Rigidbody2D rb;
 
@@ -25,18 +30,19 @@ public class CannonBall : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         bang = Resources.Load<GameObject>("Bang");
+        ball = Resources.Load<CannonBall>("CannonBall");
     }
 
     private void Start()
     {
         speed = 4 * Point.magnitude / BeatManager.SecPerBeat;
         acceleration = -2 * speed / BeatManager.SecPerBeat;
-        rb.velocity = Direction.normalized * speed;
+        rb.AddForce(Direction.normalized * speed, ForceMode2D.Impulse);
     }
 
     private void Update()
     {
-        if (BeatManager.IsBeatFull)
+        if (BeatManager.IsBeatFull || (BeatManager.IsBeatD4 && BeatManager.CountBeatD4 % 2 == 0 && IsFastBang))
         {
             Instantiate(bang, transform.position, transform.rotation);
 
@@ -47,7 +53,20 @@ public class CannonBall : MonoBehaviour
                 Mob mob = colliders[i].GetComponent<Mob>();
                 if (mob)
                 {
-                    mob.TakeDamage(damage);
+                    mob.TakeDamage(Damage);
+                }
+            }
+
+            if (IsLvlUp)
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    var direction = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+                    var newCannonBall = Instantiate(ball, transform.position, transform.rotation);
+                    newCannonBall.Direction = direction;
+                    newCannonBall.Point = direction;
+                    newCannonBall.Damage = Damage / 2;
+                    newCannonBall.IsFastBang = true;
                 }
             }
 

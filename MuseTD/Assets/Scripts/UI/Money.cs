@@ -30,7 +30,7 @@ public class Money : MonoBehaviour
         text.text = count.ToString();
     }
 
-    public static void BuyTower(int cost)
+    public static void Pay(int cost)
     {
         count -= cost;
     }

@@ -6,6 +6,12 @@ public class LavaTower : Tower
 {
     private Lava lava;
 
+    [SerializeField]
+    private Sprite spriteTower;
+
+    [SerializeField]
+    private Sprite spriteLava;
+
     protected override void Awake()
     {
         base.Awake();
@@ -17,7 +23,25 @@ public class LavaTower : Tower
     {
         if (BeatManager.IsBeatFull && BeatManager.CountBeat % 4 == 0)
         {
-            var newCannonBall = Instantiate(lava, transform.position, transform.rotation);
+            var newLava = Instantiate(lava, transform.position, transform.rotation);
+            newLava.range = range;
+            newLava.Damage = damage;
+
+            if (IsLvlUp)
+            {
+                newLava.GetComponentInChildren<SpriteRenderer>().sprite = spriteLava;
+                newLava.IsLvlUp = true;
+            }
         }
     }
+
+    public override void LvlUp()
+    {
+        base.LvlUp();
+        spriteComp.sprite = spriteTower;
+        range *= 1.5f;
+        damage *= 2;
+        SellCost = 300;
+    }
+
 }

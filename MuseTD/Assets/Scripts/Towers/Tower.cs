@@ -9,8 +9,19 @@ public class Tower : MonoBehaviour
 
     private int objCountInPlace = 0;
 
-    [SerializeField]
+    private bool onTrigger;
+
     protected TowerSetting setting;
+
+    protected SpriteRenderer spriteComp;
+
+    public bool IsLvlUp;
+
+    [SerializeField]
+    protected int damage;
+
+    [SerializeField]
+    protected GameObject rangePlace;
 
     [SerializeField]
     protected int LvlUpCost = 100;
@@ -19,33 +30,53 @@ public class Tower : MonoBehaviour
     protected int SellCost = 100;
 
     [SerializeField]
-    protected float range = 4.0f;
+    protected float range = 0;
 
     protected int cost;
-
-    protected List<Mob> enemys;
 
     public bool IsTarget { get; set; }
 
     public bool IsBuilding { get; set; }
+
+    public bool IsSelled { get; set; }
     
     protected virtual void Awake()
     {
         setting = Resources.Load<TowerSetting>("TowerSetting");
-        setting.LvlUpButton.GetComponentInChildren<Text>().text = LvlUpCost.ToString();
-        setting.SellButton.GetComponentInChildren<Text>().text = SellCost.ToString();
+        spriteComp = GetComponentInChildren<SpriteRenderer>();
 
         IsTarget = false;
+        IsSelled = false;
         IsBuilding = false;
-        enemys = new List<Mob>();
+        IsLvlUp = false;
+        onTrigger = false;
     }
 
     protected virtual void Update()
     {
+        rangePlace.transform.localScale = Vector3.one * range;
+
+        if (IsSelled)
+        {
+            Money.GetMoney(SellCost);
+            TowerManager.RemoveTower(this);
+            Destroy(gameObject);
+        }
         if (IsBuilding)
         {
-            CheckEnemy();
             Attack();
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                if (onTrigger)
+                {
+                    onTrigger = false;
+                }
+                else
+                {
+                    rangePlace.SetActive(false);
+                }
+            }
         }
         else
         {
@@ -57,35 +88,23 @@ public class Tower : MonoBehaviour
             
             if (Input.GetMouseButtonDown(0) && CheckObstacle())
             {
-                Money.BuyTower(cost);
+                Money.Pay(cost);
                 IsBuilding = true;
                 TowerManager.AddTower(this);
+                rangePlace.SetActive(false);
             }
         }
-    }
-
-    private void CheckEnemy()
-    {
-        var colliders = Physics2D.OverlapCircleAll(transform.position, range);
-        var newEnemys = new List<Mob>();
-        for (int i = 0; i < colliders.Length; i++)
-        {
-        
-            Mob mob = colliders[i].GetComponent<Mob>();
-            if (mob)
-            {
-                newEnemys.Add(mob);
-            }
-        }
-
-        IsTarget = (newEnemys.Count > 1) ? true : false;
-
-        enemys = newEnemys;
     }
 
     protected virtual void Attack()
     {
 
+    }
+
+    public virtual void LvlUp()
+    {
+        IsLvlUp = true;
+        Money.Pay(LvlUpCost);
     }
 
     private void SetPos()
@@ -102,8 +121,11 @@ public class Tower : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        Bullet bullet = collider.GetComponent<Bullet>();
-        if (!bullet)
+        var bullet = collider.GetComponent<Bullet>();
+        var ball = collider.GetComponent<CannonBall>();
+        var lava = collider.GetComponent<Lava>();
+        var bang = collider.GetComponent<Bang>();
+        if (!bullet && !ball && !lava && !bang)
         {
             objCountInPlace++;
         }
@@ -122,7 +144,18 @@ public class Tower : MonoBehaviour
     {
         if (IsBuilding)
         {
-            Instantiate(setting, transform.position - new Vector3 (0, 0.75f, 0) , Quaternion.identity);
+            rangePlace.SetActive(true);
+            var newSetting = Instantiate(setting, transform.position - new Vector3 (0, 0.75f, 0) , Quaternion.identity);
+            newSetting.SellButton.Tower = this;
+            newSetting.LvlUpButton.Tower = this;
+            newSetting.LvlUpButton.GetComponentInChildren<Text>().text = LvlUpCost.ToString();
+            newSetting.SellButton.GetComponentInChildren<Text>().text = SellCost.ToString();
+            if (IsLvlUp)
+            {
+                newSetting.LvlUpButton.gameObject.SetActive(false);
+                newSetting.transform.position -= new Vector3(0.5f, 0);
+            }
+            onTrigger = true;
         }
     }
 }

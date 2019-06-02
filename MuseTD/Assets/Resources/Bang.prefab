@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2996512860128954049}
   - component: {fileID: 9086293183036957424}
   - component: {fileID: 5436672623292033350}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Bang
   m_TagString: Untagged
   m_Icon: {fileID: 0}
