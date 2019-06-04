@@ -7,7 +7,7 @@ public class AimTower : Tower
 {
     protected Vector3 direction;
 
-    protected Rigidbody2D rigitBody;
+    protected Rigidbody2D rb;
 
     protected Mob target;
 
@@ -34,10 +34,10 @@ public class AimTower : Tower
     {
         if (enemys.Count > 0)
         {
-            var maxPassedWay = enemys.Max(x => x.passedWay);
+            var maxPassedWay = enemys.Max(x => x.PassedWay);
             for (int i = 0; i < enemys.Count; i++)
             {
-                if (enemys[i].passedWay == maxPassedWay)
+                if (enemys[i].PassedWay == maxPassedWay)
                 {
                     target = enemys[i];
                     return;

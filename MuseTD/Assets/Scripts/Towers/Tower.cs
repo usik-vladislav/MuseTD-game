@@ -26,7 +26,7 @@ public class Tower : MonoBehaviour
     public int LvlUpCost = 100;
 
     [SerializeField]
-    protected int SellCost = 100;
+    protected int sellCost = 100;
 
     [SerializeField]
     protected float range = 0;
@@ -57,7 +57,7 @@ public class Tower : MonoBehaviour
 
         if (IsSelled)
         {
-            Money.GetMoney(SellCost);
+            Money.GetMoney(sellCost);
             TowerManager.RemoveTower(this);
             Destroy(gameObject);
         }
@@ -149,7 +149,7 @@ public class Tower : MonoBehaviour
             newSetting.SellButton.Tower = this;
             newSetting.LvlUpButton.Tower = this;
             newSetting.LvlUpButton.GetComponentInChildren<Text>().text = LvlUpCost.ToString();
-            newSetting.SellButton.GetComponentInChildren<Text>().text = SellCost.ToString();
+            newSetting.SellButton.GetComponentInChildren<Text>().text = sellCost.ToString();
             if (IsLvlUp)
             {
                 newSetting.LvlUpButton.gameObject.SetActive(false);

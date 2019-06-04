@@ -17,6 +17,6 @@ public class EnergoBall : Mob
         var pos = transform.position;
         transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, speed * Time.deltaTime);
         transform.rotation *= Quaternion.Euler(0, 0, speedRotate * Time.deltaTime);
-        passedWay += (transform.position - pos).magnitude;
+        PassedWay += speed * Time.deltaTime;
     }
 }

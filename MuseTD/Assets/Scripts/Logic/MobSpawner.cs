@@ -40,7 +40,7 @@ public class MobSpawner : MonoBehaviour
         LoopsConstruct();
     }
 
-    void Update()
+    private void Update()
     {
         if (isStarted && !LevelEndControl.IsEnded)
         {

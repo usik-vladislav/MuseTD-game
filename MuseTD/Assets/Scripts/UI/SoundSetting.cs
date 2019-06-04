@@ -7,14 +7,14 @@ public class SoundSetting : MonoBehaviour
 {
     private Slider slider;
 
-    public void Awake()
+    private void Awake()
     {
         slider = GetComponentInChildren<Slider>();
 
         slider.value = Global.Sound;
     }
 
-    public void SetSoundVolume(float value)
+    private void SetSoundVolume(float value)
     {
         Global.Sound = value;
     }

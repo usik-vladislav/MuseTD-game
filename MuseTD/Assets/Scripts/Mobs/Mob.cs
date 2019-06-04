@@ -24,14 +24,11 @@ public class Mob : MonoBehaviour
 
     protected Vector3 direction;
 
-    [SerializeField]
-    protected float path = 39f;
-
     protected bool isStop = false;
 
-    public bool isSlowDown = false;
+    public bool IsSlowDown = false;
 
-    public float passedWay = 0;
+    public float PassedWay = 0;
 
     protected virtual void Update()
     {
@@ -40,10 +37,10 @@ public class Mob : MonoBehaviour
         {
             FindPos();
             Move();
-            if (isSlowDown && BeatManager.IsBeatFull && BeatManager.CountBeat % 4 == 3)
+            if (IsSlowDown && BeatManager.IsBeatFull && BeatManager.CountBeat % 4 == 3)
             {
                 speed *= 3;
-                isSlowDown = false;
+                IsSlowDown = false;
             }
         }
         else
@@ -54,7 +51,7 @@ public class Mob : MonoBehaviour
 
     protected void FindPos()
     {
-        var way = passedWay;
+        var way = PassedWay;
         var index = 0;
         foreach (var e in route)
         {
@@ -102,7 +99,7 @@ public class Mob : MonoBehaviour
     public virtual void SlowDown()
     {
         speed /= 3;
-        isSlowDown = true;
+        IsSlowDown = true;
     }
 
 }

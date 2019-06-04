@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class TowerSetting : MonoBehaviour
 {
-    [SerializeField]
     public LvlUpButton LvlUpButton;
 
-    [SerializeField]
     public SellButton SellButton;
 
     private bool mayClick;

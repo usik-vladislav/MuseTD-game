@@ -23,8 +23,8 @@ public class CannonTower : AimTower
         isRotate = true;
         ball = Resources.Load<CannonBall>("CannonBall");
         cost = Money.CannonTowerCost;
-        rigitBody = GetComponent<Rigidbody2D>();
-        rigitBody.angularVelocity = rotateSpeed;
+        rb = GetComponent<Rigidbody2D>();
+        rb.angularVelocity = rotateSpeed;
         direction = Vector3.left;
     }
 
@@ -42,7 +42,7 @@ public class CannonTower : AimTower
         if (target && isRotate)
         {
             var newDirection = Vector3.RotateTowards(direction, target.transform.position - transform.position, rotateSpeed, 1f);
-            rigitBody.MoveRotation(Vector3.SignedAngle(Vector3.left, newDirection, Vector3.forward));
+            rb.MoveRotation(Vector3.SignedAngle(Vector3.left, newDirection, Vector3.forward));
             direction = newDirection;
         }
     }
@@ -69,6 +69,6 @@ public class CannonTower : AimTower
         spriteComp.sprite = spriteUpTower;
         range *= 1.5f;
         damage *= 2;
-        SellCost = 300;
+        sellCost = 300;
     }
 }

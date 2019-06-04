@@ -6,13 +6,15 @@ using System.Linq;
 
 public class ResolutionSettings : MonoBehaviour
 {
-    public Dropdown dropdown;
+    [SerializeField]
+    private Dropdown dropdown;
 
-    public Toggle toggle;
+    [SerializeField]
+    private Toggle toggle;
 
     private Resolution[] resolutions;
 
-    public void Awake()
+    private void Awake()
     {
         resolutions = Screen.resolutions;
 
@@ -25,12 +27,12 @@ public class ResolutionSettings : MonoBehaviour
         dropdown.value = res.Count() - 1;
     }
 
-    public void SetResolution()
+    private void SetResolution()
     {
         Screen.SetResolution(resolutions[dropdown.value].width, resolutions[dropdown.value].height, Screen.fullScreen);
     }
 
-    public void SetFullscreen()
+    private void SetFullscreen()
     {
         Screen.fullScreen = !Screen.fullScreen;
     }

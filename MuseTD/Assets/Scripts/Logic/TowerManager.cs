@@ -21,7 +21,7 @@ public class TowerManager : MonoBehaviour
         towers.Remove(tower);
     }
 
-    public void Update()
+    private void Update()
     {
         var isGun = false;
         var isCannon = false;

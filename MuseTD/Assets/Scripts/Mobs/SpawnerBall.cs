@@ -89,7 +89,7 @@ public class SpawnerBall : Mob
     private void Spawn(Mob mob)
     {
         var newBall = Instantiate<Mob>(mob, transform.position + direction.normalized * 0.5f, transform.rotation);
-        newBall.passedWay = passedWay + 0.5f;
+        newBall.PassedWay = PassedWay + 0.5f;
     }
 
     protected override void Move()
@@ -97,6 +97,6 @@ public class SpawnerBall : Mob
         var pos = transform.position;
         transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, speed * Time.deltaTime);
         transform.rotation *= Quaternion.Euler(0, 0, speedRotate * Time.deltaTime);
-        passedWay += (transform.position - pos).magnitude;
+        PassedWay += (transform.position - pos).magnitude;
     }
 }

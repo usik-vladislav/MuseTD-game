@@ -26,7 +26,7 @@ public class LavaTower : Tower
         if (BeatManager.IsBeatFull && BeatManager.CountBeat % 4 == 1)
         {
             instanceLava = Instantiate(lava, transform.position, transform.rotation);
-            instanceLava.range = range;
+            instanceLava.Range = range;
             instanceLava.Damage = damage;
 
             if (IsLvlUp)
@@ -42,7 +42,7 @@ public class LavaTower : Tower
         base.LvlUp();
         spriteComp.sprite = spriteTower;
         range *= 1.5f;
-        SellCost = 300;
+        sellCost = 300;
         if (instanceLava)
         {
             instanceLava.GetComponentInChildren<SpriteRenderer>().sprite = spriteLava;

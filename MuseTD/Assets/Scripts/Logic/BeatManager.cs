@@ -31,17 +31,7 @@ public class BeatManager : MonoBehaviour
 
     public static int CountBeat { get; set; }
 
-    //[SerializeField]
-    //private float offset = 0;
-
-    //[SerializeField]
-    //private float beatOffset = 0;
-
-    //private float beatPlayTimer = 0;
-
-    //public static bool IsBeatPlay = false;
-
-    public void Awake()
+    private void Awake()
     {
         IsBeatFull = false;
         IsBeatD4 = false;
@@ -57,7 +47,7 @@ public class BeatManager : MonoBehaviour
 
     private void Start()
     {
-        dsptimesong = (float)AudioSettings.dspTime; //+ offset; //запись времени начала песни
+        dsptimesong = (float)AudioSettings.dspTime; 
 
         audioSource.Play();
 
@@ -65,14 +55,6 @@ public class BeatManager : MonoBehaviour
 
     private void Update()
     {
-        //IsBeatPlay = false;
-        //beatPlayTimer += newSongPosition - songPosition;
-        //if (beatPlayTimer > secPerBeat - beatOffset)
-        //{
-        //    beatPlayTimer -= secPerBeat;
-        //    IsBeatPlay = true;
-        //}
-
         IsBeatFull = false;
         IsBeatD4 = false;
 
@@ -83,7 +65,7 @@ public class BeatManager : MonoBehaviour
             LevelEndControl.IsEnded = true;
         }
 
-        var newSongPosition = (float)(AudioSettings.dspTime - dsptimesong);   //вычисление позиции в секундах
+        var newSongPosition = (float)(AudioSettings.dspTime - dsptimesong);  
         beatTimer += newSongPosition - songPosition;
         beatTimerD4 += newSongPosition - songPosition;
 

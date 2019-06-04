@@ -13,7 +13,7 @@ public class GunTower : AimTower
     {
         base.Awake();
         bullet = Resources.Load<Bullet>("Bullet");
-        rigitBody = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         direction = Vector3.left;
         cost = Money.GunTowerCost;
     }
@@ -23,7 +23,7 @@ public class GunTower : AimTower
         if (target)
         {
             var newDirection = target.transform.position - transform.position;
-            rigitBody.MoveRotation(Vector3.SignedAngle(Vector3.left, newDirection, Vector3.forward));
+            rb.MoveRotation(Vector3.SignedAngle(Vector3.left, newDirection, Vector3.forward));
             direction = newDirection;
         }
     }
@@ -58,6 +58,6 @@ public class GunTower : AimTower
         base.LvlUp();
         spriteComp.sprite = sprite;
         range *= 1.5f;
-        SellCost = 200;
+        sellCost = 200;
     }
 }

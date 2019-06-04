@@ -6,20 +6,20 @@ using UnityEngine.SceneManagement;
 public class GameMenu : MonoBehaviour
 {
 
-    public void ClickRestart()
+    private void ClickRestart()
     {
         BeatManager.IsBeatFull = false;
         BeatManager.IsBeatD4 = false;
         SceneManager.LoadScene(1);
     }
 
-    public void Win()
+    private void Win()
     {
         Global.NumberCompletedLevels.Add(1);
         ClickExit();
     }
 
-    public void ClickExit()
+    private void ClickExit()
     {
         SceneManager.LoadScene(2);
     }

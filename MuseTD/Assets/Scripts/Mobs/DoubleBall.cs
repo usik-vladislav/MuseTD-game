@@ -28,9 +28,9 @@ public class DoubleBall : Ball
     protected override void Die()
     {
         base.Die();
-        var newBall = Instantiate<Ball>(spawnedBall, transform.position - direction.normalized * 0.5f, transform.rotation);
-        newBall.passedWay = passedWay - 0.5f;
-        newBall = Instantiate<Ball>(spawnedBall, transform.position, transform.rotation);
-        newBall.passedWay = passedWay;
+        var newBall = Instantiate<Ball>(spawnedBall, transform.position - direction.normalized * 0.25f, transform.rotation);
+        newBall.PassedWay = PassedWay - 0.25f;
+        newBall = Instantiate<Ball>(spawnedBall, transform.position + direction.normalized * 0.25f, transform.rotation);
+        newBall.PassedWay = PassedWay + 0.25f;
     }
 }

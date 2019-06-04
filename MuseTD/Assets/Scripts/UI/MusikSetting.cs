@@ -8,7 +8,7 @@ public class MusikSetting : MonoBehaviour
     private Slider slider;
 
 
-    public void Awake()
+    private void Awake()
     {
         slider = GetComponentInChildren<Slider>();
 
@@ -16,7 +16,7 @@ public class MusikSetting : MonoBehaviour
     }
 
 
-    public void SetMusikVolume(float value)
+    private void SetMusikVolume(float value)
     {
         Global.Musik = value;
     }

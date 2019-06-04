@@ -34,7 +34,7 @@ public class ChoiseLevel : MonoBehaviour
         lvl_1_icon.color = PlayerPrefs.HasKey("1") ? Color.white : lvl_1_icon.color;
     }
 
-    public void ClickPlay()
+    private void ClickPlay()
     {
         if (numberLevel > 0)
         {
@@ -42,12 +42,12 @@ public class ChoiseLevel : MonoBehaviour
         }
     }
 
-    public void ClickBack()
+    private void ClickBack()
     {
         SceneManager.LoadScene(0);
     }
 
-    public void ClickLvl_1()
+    private void ClickLvl_1()
     {
         numberLevel = 1;
         bg.sprite = lvl_1_Image;
@@ -55,7 +55,7 @@ public class ChoiseLevel : MonoBehaviour
         musik.Play(7);
     }
 
-    public void ClickComingSoon()
+    private void ClickComingSoon()
     {
         numberLevel = -1;
         bg.sprite = null;

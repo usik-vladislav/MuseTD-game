@@ -20,7 +20,7 @@ public class LevelEndControl : MonoBehaviour
         IsEnded = false;
     }
 
-    public void Update()
+    private void Update()
     {
 
         if (Lives.CountOfLives == 0)
