@@ -59,7 +59,7 @@ public class CannonBall : MonoBehaviour
 
             if (IsLvlUp)
             {
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 3; i++)
                 {
                     var direction = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
                     var newCannonBall = Instantiate(ball, transform.position, transform.rotation);

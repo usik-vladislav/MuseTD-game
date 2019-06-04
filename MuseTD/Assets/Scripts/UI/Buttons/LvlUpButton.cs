@@ -8,6 +8,7 @@ public class LvlUpButton : Button
 
     private void OnMouseUp()
     {
+        if (Money.EnoughMoney(Tower.LvlUpCost))
         Tower.LvlUp();
     }
 }

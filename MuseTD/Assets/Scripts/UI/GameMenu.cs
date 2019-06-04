@@ -13,8 +13,14 @@ public class GameMenu : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    public void Win()
+    {
+        Global.NumberCompletedLevels.Add(1);
+        ClickExit();
+    }
+
     public void ClickExit()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(2);
     }
 }

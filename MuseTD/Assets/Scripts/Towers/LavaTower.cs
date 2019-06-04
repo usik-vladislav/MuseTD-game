@@ -12,6 +12,8 @@ public class LavaTower : Tower
     [SerializeField]
     private Sprite spriteLava;
 
+    private Lava instanceLava;
+
     protected override void Awake()
     {
         base.Awake();
@@ -21,16 +23,16 @@ public class LavaTower : Tower
 
     protected override void Attack()
     {
-        if (BeatManager.IsBeatFull && BeatManager.CountBeat % 4 == 0)
+        if (BeatManager.IsBeatFull && BeatManager.CountBeat % 4 == 1)
         {
-            var newLava = Instantiate(lava, transform.position, transform.rotation);
-            newLava.range = range;
-            newLava.Damage = damage;
+            instanceLava = Instantiate(lava, transform.position, transform.rotation);
+            instanceLava.range = range;
+            instanceLava.Damage = damage;
 
             if (IsLvlUp)
             {
-                newLava.GetComponentInChildren<SpriteRenderer>().sprite = spriteLava;
-                newLava.IsLvlUp = true;
+                instanceLava.GetComponentInChildren<SpriteRenderer>().sprite = spriteLava;
+                instanceLava.IsLvlUp = true;
             }
         }
     }
@@ -40,8 +42,11 @@ public class LavaTower : Tower
         base.LvlUp();
         spriteComp.sprite = spriteTower;
         range *= 1.5f;
-        damage *= 2;
         SellCost = 300;
+        if (instanceLava)
+        {
+            instanceLava.GetComponentInChildren<SpriteRenderer>().sprite = spriteLava;
+        }
     }
 
 }

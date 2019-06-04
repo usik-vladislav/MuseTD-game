@@ -6,7 +6,27 @@ public class TowerButton : Button
 {
     protected Tower tower;
 
+    protected SpriteRenderer spriteRend;
+
     protected int cost;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        spriteRend = GetComponentInChildren<SpriteRenderer>();
+    }
+
+    private void Update()
+    {
+        if (!Money.EnoughMoney(cost))
+        {
+            spriteRend.color = Color.gray;
+        }
+        else
+        {
+            spriteRend.color = Color.white;
+        }
+    }
 
     private void OnMouseUp()
     {

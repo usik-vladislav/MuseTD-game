@@ -23,8 +23,7 @@ public class Tower : MonoBehaviour
     [SerializeField]
     protected GameObject rangePlace;
 
-    [SerializeField]
-    protected int LvlUpCost = 100;
+    public int LvlUpCost = 100;
 
     [SerializeField]
     protected int SellCost = 100;
@@ -122,10 +121,9 @@ public class Tower : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collider)
     {
         var bullet = collider.GetComponent<Bullet>();
-        var ball = collider.GetComponent<CannonBall>();
         var lava = collider.GetComponent<Lava>();
         var bang = collider.GetComponent<Bang>();
-        if (!bullet && !ball && !lava && !bang)
+        if (!bullet && !lava && !bang)
         {
             objCountInPlace++;
         }
@@ -133,8 +131,10 @@ public class Tower : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collider)
     {
-        Bullet bullet = collider.GetComponent<Bullet>();
-        if (!bullet)
+        var bullet = collider.GetComponent<Bullet>();
+        var lava = collider.GetComponent<Lava>();
+        var bang = collider.GetComponent<Bang>();
+        if (!bullet && !lava && !bang)
         {
             objCountInPlace--;
         }

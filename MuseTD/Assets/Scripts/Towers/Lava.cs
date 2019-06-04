@@ -13,17 +13,17 @@ public class Lava : MonoBehaviour
     private void Update()
     {
 
-        if (BeatManager.CountBeat % 4 == 0)
+        if (BeatManager.CountBeat % 4 == 1)
         {
             var pos = BeatManager.SongPosInBeats;
             transform.localScale = new Vector3(1, 1, 1) * Mathf.Lerp(1f, range, (pos - (float)System.Math.Truncate(pos)) / BeatManager.SecPerBeat);
         }
-        else if (BeatManager.CountBeat % 4 == 2)
+        else if (BeatManager.CountBeat % 4 == 3)
         {
             var pos = BeatManager.SongPosInBeats;
             transform.localScale = new Vector3(1, 1, 1) * Mathf.Lerp(range, 1f, (pos - (float)System.Math.Truncate(pos)) / BeatManager.SecPerBeat);
         }
-        else if (BeatManager.CountBeat % 4 == 3)
+        else if (BeatManager.CountBeat % 4 == 0)
         {
             Destroy(gameObject);
         }

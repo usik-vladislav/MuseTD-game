@@ -6,7 +6,7 @@ public class Button : MonoBehaviour
 {
     private Transform myTransform;
 
-    public void Awake()
+    protected virtual void Awake()
     {
         myTransform = GetComponent<Transform>();
     }

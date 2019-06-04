@@ -50,7 +50,7 @@ public class GunTower : AimTower
     {  
         var newBullet = Instantiate(bullet, transform.position + direction.normalized * 0.4f + sign * Vector3.Cross(direction, Vector3.forward).normalized * 0.2f, transform.rotation);
         newBullet.Direction = direction;
-        newBullet.Damage = damage / 2;
+        newBullet.Damage = damage;
     }
 
     public override void LvlUp()
@@ -58,7 +58,6 @@ public class GunTower : AimTower
         base.LvlUp();
         spriteComp.sprite = sprite;
         range *= 1.5f;
-        damage *= 2;
         SellCost = 200;
     }
 }

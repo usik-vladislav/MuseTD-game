@@ -49,7 +49,7 @@ public class CannonTower : AimTower
 
     protected override void Attack()
     {
-        if (BeatManager.IsBeatFull && BeatManager.CountBeat % 2 == 0 && target)
+        if (BeatManager.IsBeatFull && BeatManager.CountBeat % 2 == 1 && target)
         {
             var newCannonBall = Instantiate(ball, transform.position + direction.normalized * 0.5f, transform.rotation);
             newCannonBall.Direction = direction;

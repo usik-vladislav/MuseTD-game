@@ -8,8 +8,6 @@ public class BeatManager : MonoBehaviour
 
     private float songPosition;
 
-    private float secPerBeatD4;
-
     private float beatTimer = 0;
 
     private float beatTimerD4 = 0;
@@ -18,6 +16,8 @@ public class BeatManager : MonoBehaviour
 
     [SerializeField]
     private float bpm = 180;
+
+    public static float SecPerBeatD4 { get; set; }
 
     public static float SecPerBeat { get; set; }
 
@@ -45,8 +45,12 @@ public class BeatManager : MonoBehaviour
     {
         IsBeatFull = false;
         IsBeatD4 = false;
+        beatTimer = 0;
+        beatTimerD4 = 0;
+        CountBeatD4 = 0;
+        CountBeat = 0;
         SecPerBeat = 60f / bpm;
-        secPerBeatD4 = SecPerBeat / 4;
+        SecPerBeatD4 = SecPerBeat / 4;
         audioSource = GetComponent<AudioSource>();
         audioSource.volume = Global.Musik;
     }
@@ -86,15 +90,15 @@ public class BeatManager : MonoBehaviour
         if (beatTimer >= SecPerBeat)
         {
             beatTimer -= SecPerBeat;
-            IsBeatFull = true;
             CountBeat++;
+            IsBeatFull = true;
         }
 
-        if (beatTimerD4 >= secPerBeatD4)
+        if (beatTimerD4 >= SecPerBeatD4)
         {
-            beatTimerD4 -= secPerBeatD4;
-            IsBeatD4 = true;
+            beatTimerD4 -= SecPerBeatD4;
             CountBeatD4++;
+            IsBeatD4 = true;
         }
 
         songPosition = newSongPosition;

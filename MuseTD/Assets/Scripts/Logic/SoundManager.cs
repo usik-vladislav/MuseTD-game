@@ -78,7 +78,7 @@ public class SoundManager : MonoBehaviour
             }
             if (IsCannon)
             {
-                if (BeatManager.CountBeat % 2 == 0)
+                if (BeatManager.CountBeat % 2 == 1)
                 {
                     cannonShootSound.Play();
                     isBall = true;
@@ -95,11 +95,11 @@ public class SoundManager : MonoBehaviour
             }
             if (IsLava)
             {
-                if (BeatManager.CountBeat % 4 == 0)
+                if (BeatManager.CountBeat % 4 == 1)
                 {
                     lavaSound.Play();
                 }
-                if (BeatManager.CountBeat % 4 == 3)
+                if (BeatManager.CountBeat % 4 == 0)
                 {
                     lavaSound.Stop();
                 }
