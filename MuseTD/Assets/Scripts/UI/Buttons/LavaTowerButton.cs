@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class LavaTowerButton : TowerButton
 {
-    private void Start()
+    protected override void Awake()
     {
         tower = Resources.Load<LavaTower>("LavaTower");
         cost = Money.LavaTowerCost;
+        base.Awake();
     }
 }

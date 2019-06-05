@@ -10,8 +10,11 @@ public class TowerButton : Button
 
     protected int cost;
 
+    public static Tower Tower;
+
     protected override void Awake()
     {
+        Tower = null;
         base.Awake();
         spriteRend = GetComponentInChildren<SpriteRenderer>();
     }
@@ -34,12 +37,12 @@ public class TowerButton : Button
         {
             return;
         }
-        if (Money.EnoughMoney(cost))
+        if (Money.EnoughMoney(cost) && !Tower)
         {
             var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0;
-            var newTower = Instantiate<Tower>(tower, mousePos, Quaternion.identity);
-            newTower.IsBuilding = false;
+            Tower = Instantiate<Tower>(tower, mousePos, Quaternion.identity);
+            Tower.IsBuilding = false;
         }
     }
 }

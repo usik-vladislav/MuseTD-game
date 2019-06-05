@@ -89,6 +89,7 @@ public class Tower : MonoBehaviour
             {
                 Money.Pay(cost);
                 IsBuilding = true;
+                TowerButton.Tower = null;
                 TowerManager.AddTower(this);
                 rangePlace.SetActive(false);
             }

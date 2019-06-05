@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class CannonTowerButton : TowerButton
 {
-    private void Start()
+    protected override void Awake()
     {
         tower = Resources.Load<CannonTower>("CannonTower");
         cost = Money.CannonTowerCost;
+        base.Awake();
     }
 }
